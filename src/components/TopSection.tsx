@@ -108,7 +108,7 @@ export const TopSection = () => {
 
           {/* Call to action */}
           <motion.div
-            className="col-span-1 sm:col-span-2 md:col-span-3 bg-coral/10 border border-coral/40 backdrop-blur-md text-pinkAccent  text-center rounded-2xl p-6 font-semibold text-xl hover:scale-[1.02] transition hover:bg-coral"
+            className="col-span-1 sm:col-span-2 md:col-span-3 border border-coral/40 backdrop-blur-[2px]  bg-white/5 text-pinkAccent  text-center rounded-2xl p-6 font-semibold text-xl hover:scale-[1.02] transition"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

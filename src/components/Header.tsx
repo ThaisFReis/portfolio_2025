@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <header className="flex justify-between items-center p-6">
-      <h1 className="text-xl font-bold text-[#FF7F50] uppercase">Thais</h1>
+      <h1 className="text-xl font-bold text-white uppercase">Thais</h1>
       <nav className="space-x-6 hidden md:flex">
         <a href="#about" className="hover:text-pinkAccent transition">
           Sobre
