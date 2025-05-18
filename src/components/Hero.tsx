@@ -1,10 +1,4 @@
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaInstagram,
-  FaTelegram,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { FiFileText } from "react-icons/fi";
@@ -13,8 +7,8 @@ import { GlassCard } from "./GlassCard";
 
 export const Hero = () => {
   return (
-    <section className="w-screen min-h-screen px-6 py-20 flex items-center justify-center">
-      <div className="grid grid-cols-1 laptop:grid-cols-2 items-center">
+    <section className="w-screen min-h-screen flex items-center justify-center">
+      <div className="grid grid-cols-1 laptop:grid-cols-2 items-center w-screen min-h-screen laptop:px-40">
         {/* ESQUERDA */}
         <div className="flex flex-col justify-center group w-fit rounded-2xl p-6 border border-lavender/5 shadow-md transition-all duration-300 backdrop-blur-[3px] gap-2">
           {/* glowing particle background */}
@@ -26,9 +20,7 @@ export const Hero = () => {
           <h1 className="text-4xl laptop:text-6xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]">
             OI, EU SOU
             <br />
-            <span className="inline-block py-1 mt-3 rounded-md">
-              THAIS
-            </span>
+            <span className="inline-block py-1 mt-3 rounded-md">THAIS</span>
             <br />
             <span className="inline-block py-1 mt-2 rounded-md">
               FERREIRA REIS
@@ -62,7 +54,7 @@ export const Hero = () => {
 
         {/* DIREITA - CARDS */}
         <div className="flex flex-col gap-6">
-          <div className="flex gap-8">
+          <div className="flex gap-4">
             <GlassCard
               icon={<HiOutlineDocumentText className="text-3xl text-coral" />}
               title="Sobre mim"
@@ -75,12 +67,6 @@ export const Hero = () => {
               description="Veja o que já construí"
               href="#projects"
             />
-            <GlassCard
-              icon={<MdOutlineWorkOutline className="text-3xl text-coral" />}
-              title="Serviços"
-              description="Web, dados, automações"
-              href="#services"
-            />
           </div>
 
           {/* CTA */}
@@ -90,9 +76,7 @@ export const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <a href="#contact">
-              Vamos trabalhar juntos!
-            </a>
+            <a href="#contact">Vamos trabalhar juntos!</a>
           </motion.div>
         </div>
       </div>

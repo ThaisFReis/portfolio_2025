@@ -1,17 +1,15 @@
-import Header from "@/components/Header";
-import ProjectsSection from "@/components/ProjectsSection";
-import AboutSection from "@/components/AboutSection";
+;import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { ProjectsSection } from "@/components/ProjectsSection";
 
 export const Home = () => {
   return (
-    <div className="min-h-screen w-screen">
-      <Header />
+    <div className="h-screen w-screen">
       <Hero />
-      <ProjectsSection />
       <AboutSection />
+      <ProjectsSection />
       <ContactSection />
       <Footer />
     </div>

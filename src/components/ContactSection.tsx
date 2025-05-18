@@ -14,89 +14,70 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative px-6 py-16 bg-[#1E1E2F] text-textPrimary flex flex-col items-center"
+      className="min-h-screen flex flex-col items-center justify-center text-white gap-8"
     >
       <motion.h2
-        className="text-2xl md:text-3xl font-bold text-pinkAccent mb-8"
+        className="text-2xl laptop:text-4xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Vamos conversar? ✨
+        Me Contate:
       </motion.h2>
 
       <motion.form
-        className="w-full max-w-xl space-y-4"
+        onSubmit={handleSubmit}
+        className="flex flex-col justify-center group w-[40rem] rounded-2xl p-6 border border-lavender/5 shadow-md transition-all duration-300 backdrop-blur-[3px] gap-2"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        onSubmit={handleSubmit}
       >
         <div>
-          <label className="block text-sm mb-1">Nome</label>
+          <label className="block text-sm mb-1 text-gray-300">Nome</label>
           <input
             type="text"
             placeholder="Seu nome"
-            className="w-full bg-[#2A2A3C] text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pinkAccent"
-            required
+            className="w-full bg-[#fff0] border border-lavender/10 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
           />
         </div>
 
         <div>
-          <label className="block text-sm mb-1">Email</label>
+          <label className="block text-sm mb-1 text-gray-300">Email</label>
           <input
             type="email"
             placeholder="seu@email.com"
-            className="w-full bg-[#2A2A3C] text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pinkAccent"
+            className="w-full bg-[#fff0] border border-lavender/10 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm mb-1">Mensagem</label>
+          <label className="block text-sm mb-1 text-gray-300">Mensagem</label>
           <textarea
             rows={5}
             placeholder="Escreva sua mensagem..."
-            className="w-full bg-[#2A2A3C] text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pinkAccent"
+            className="w-full bg-[#fff0] border border-lavender/10 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
             required
           />
         </div>
 
         <button
           type="submit"
-          className="bg-pinkAccent text-background px-6 py-2 rounded-full hover:opacity-90 transition"
+          className="bg-coral/30 text-[#fff] border border-coral/40 px-4 py-2 rounded-full font-medium hover:bg-coral transition mx-auto my-4"
         >
           Enviar mensagem
         </button>
+        <div></div>
       </motion.form>
-
-      <div className="flex gap-6 mt-10">
-        <a
-          href="https://github.com/ThaisFReis"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-2xl text-pinkAccent hover:scale-110 transition"
-        >
-          <FaGithub />
-        </a>
-        <a
-          href="https://linkedin.com/in/thaisfreis"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-2xl text-pinkAccent hover:scale-110 transition"
-        >
-          <FaLinkedin />
-        </a>
-      </div>
 
       {/* Modal */}
       <AnimatePresence>
         {showModal && (
           <motion.div
+            className="fixed bottom-10 bg-coral text-[#fff] px-6 py-3 rounded-xl shadow-lg backdrop-blur-md"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-10 bg-lavender text-background px-6 py-3 rounded-xl shadow-lg"
           >
             ✨ Sua mensagem foi enviada com sucesso!
           </motion.div>

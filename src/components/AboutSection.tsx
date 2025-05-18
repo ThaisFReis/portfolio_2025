@@ -1,59 +1,63 @@
-import { motion } from "framer-motion";
-import avatar from "@/assets/eu.png"
+import { GlassCard } from "./GlassCard";
 
 export default function AboutSection() {
   return (
     <section
       id="about"
-      className="px-6 py-16 flex flex-col md:flex-row items-center gap-10"
-    >
-      {/* Avatar */}
-      <motion.img
-        src={avatar}
-        alt="Avatar"
-        className="w-40 h-40 md:w-56 md:h-56 rounded-2xl shadow-lg bg-lavender p-2"
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-      />
+      className=" laptop:px-72 py-32 bg-transparent flex flex-col justify-center gap-20 min-h-screen items-center w-screen">
+      <p className="font-light ml-auto mr-0">
+        Olá! Eu sou a Thais. Eu sou uma{" "}
+        <span className="text-[#fff] italic font-normal">
+          desenvolvedora front-end e analista de dados
+        </span>
+        . <br /> Com mais de{" "}
+        <span className="text-[#fff] italic font-normal">2 anos</span> de
+        experiência
+      </p>
+      <div className="grid grid-cols-2">
+        <GlassCard
+          title="Linguagens"
+          description={
+            <>
+              JavaScript <span className="text-coral"> • </span> Python<span className="text-coral"> • </span>Java<span className="text-coral"> • </span>SQL<span className="text-coral"> • </span>TypeScript
+            </>              
+          }
+          className="!shadow-none transition-none duration-0 !w-fit !min-h-fit p-2"
+          hiddenFooter={true}
+        />
+        <GlassCard
+          title="Front-End"
+          description={
+            <>
+              React<span className="text-coral"> • </span>Astro<span className="text-coral"> • </span>Vite<span className="text-coral"> • </span>NextJs<span className="text-coral"> • </span>Jest<span className="text-coral"> • </span>CSS<span className="text-coral"> • </span>Tailwind<span className="text-coral"> • </span>SASS<span className="text-coral"> • </span>MUI<span className="text-coral"> • </span>Material UI
+            </>
+          }
+          className="!shadow-none transition-none duration-0 !w-fit !min-h-fit p-2"
+          hiddenFooter={true}
+        />
 
-      {/* Texto */}
-      <motion.div
-        className="max-w-2xl"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <h2 className="text-2xl md:text-3xl font-bold text-pinkAccent mb-4">
-          Sobre mim
-        </h2>
-        <p className="text-textPrimary text-base md:text-lg mb-4 leading-relaxed">
-          Oi! Eu sou a <span className="font-medium">Thais Ferreira</span>, desenvolvedora
-          front-end e cientista de dados. Atualmente curso <span className="font-medium">Ciências Matemáticas e da Terra na UFRJ</span> e atuo com
-          tecnologias como React, TypeScript, Tailwind e Python. Amo criar experiências agradáveis,
-          resolver problemas com dados e participar de projetos criativos!
-        </p>
+        <GlassCard
+          title="Back-End"
+          description={
+            <>
+              NodeJs<span className="text-coral"> • </span>Express<span className="text-coral"> • </span>MongoDB<span className="text-coral"> • </span>MySQL<span className="text-coral"> • </span>Nest<span className="text-coral"> • </span>Prisma
+            </>
+          }
+          className="!shadow-none transition-none duration-0 !w-fit !min-h-fit p-2"
+          hiddenFooter={true}
+        />
 
-        <div className="flex flex-wrap gap-2 mt-4">
-          {[
-            "React",
-            "TypeScript",
-            "Tailwind",
-            "Python",
-            "SQL",
-            "Node.js",
-            "Docker",
-            "Talend",
-          ].map((skill, i) => (
-            <span
-              key={i}
-              className="bg-pinkAccent/20 text-pinkAccent text-xs px-3 py-1 rounded-full"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </motion.div>
+        <GlassCard
+          title="Ferramentas"
+          description={
+            <>
+              Docker<span className="text-coral"> • </span>N8N<span className="text-coral"> • </span>Talend Studio<span className="text-coral"> • </span>Git/GitHub<span className="text-coral"> • </span>Firebase<span className="text-coral"> • </span>Figma
+            </>
+          }
+          className="!shadow-none transition-none duration-0 !w-fit !min-h-fit p-2"
+          hiddenFooter={true}
+        />
+      </div>
     </section>
   );
 }

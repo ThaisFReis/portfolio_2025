@@ -1,64 +1,119 @@
-import { motion } from "framer-motion";
+"use client";
 
-const projects = [
-  {
-    title: "Gerador de Conteúdo com IA",
-    description: "Aplicação que gera resumos esportivos automaticamente com IA, usando n8n, Vite e Tailwind.",
-    image: "/projects/ia-generator.png", // substitua com seu path
-    tech: ["React", "Tailwind", "n8n"],
-    link: "https://github.com/ThaisFReis/projeto-ia",
-  },
-  {
-    title: "Pipeline ETL com Talend",
-    description: "Pipeline de transformação de dados automatizado com Docker e Talend em ambiente padronizado.",
-    image: "/projects/talend-pipeline.png",
-    tech: ["Talend", "Docker", "SQL"],
-    link: "https://github.com/ThaisFReis/talend-etl",
-  },
-  // Adicione mais projetos aqui...
-];
+import { useRef } from "react";
+import {
+  animate,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useScroll,
+  MotionValue,
+} from "framer-motion";
+import { GlassCard } from "./GlassCard";
+import projectImg from "@/assets/cria2.png";
+import { FaChevronRight } from "react-icons/fa";
 
-export default function ProjectsSection() {
+const cards = Array.from({ length: 4 }, (_, i) => ({
+  title: `PROJETO ${i + 1}`,
+  description:
+    "Painel interativo criado com React, Tailwind e animações suaves.",
+  link: "#",
+  image: projectImg,
+}));
+
+export const ProjectsSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollXProgress } = useScroll({ container: scrollRef });
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
+  };
+
   return (
-    <section id="projects" className="px-6 pb-16">
-      <h2 className="text-2xl md:text-3xl font-bold text-pinkAccent mb-8">Projetos</h2>
-      <div className="grid md:grid-cols-2 gap-6">
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            className="rounded-xl bg-[#2A2A3C] p-4 shadow-md hover:scale-[1.02] transition cursor-pointer"
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 40 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-          >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-40 object-cover rounded-lg mb-4"
+    <section
+      id="projects"
+      className="relative px-6 pt-36 pb-20 min-h-screen flex flex-col items-center w-screen justify-evenly"
+    >
+      <div className="flex flex-col items-center justify-between gap-10 h-fit">
+        <div className="flex h-fit w-full items-center justify-center gap-6">
+          <p className="text-4xl laptop:text-5xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]">
+            Projetos
+          </p>
+          {/* Progress SVG */}
+          <svg className="w-14 h-14 -rotate-90 z-20" viewBox="0 0 100 100">
+            <circle
+              cx="50"
+              cy="50"
+              r="30"
+              pathLength="1"
+              className="stroke-gray-700 fill-none"
+              strokeWidth="10"
             />
-            <h3 className="text-xl font-semibold text-pinkAccent">{project.title}</h3>
-            <p className="text-sm text-textPrimary mt-2">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mt-3">
-              {project.tech.map((tag, i) => (
-                <span
-                  key={i}
-                  className="bg-pinkAccent/20 text-pinkAccent text-xs px-2 py-1 rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-4 text-sm text-lavender underline"
-            >
-              Ver no GitHub →
-            </a>
+            <motion.circle
+              cx="50"
+              cy="50"
+              r="30"
+              pathLength="1"
+              className="stroke-coral fill-none"
+              strokeWidth="10"
+              style={{ pathLength: scrollXProgress }}
+            />
+          </svg>
+        </div>
+
+        <div className="flex items-center gap-4">
+          {/* Setinha de navegação */}
+          <button
+            onClick={() =>
+              scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" })
+            }
+            className="z-20 bg-coral/30 hover:bg-coral text-white p-3 rounded-full transition w-10 h-10 flex items-center justify-center"
+            aria-label="Scroll left"
+          >
+            <FaChevronRight className="text-xl rotate-180" />
+          </button>
+
+          {/* Carrossel Scrollable */}
+          <motion.div
+            ref={scrollRef}
+            className="w-full max-w-7xl h-fit overflow-x-auto scroll-smooth flex gap-8 p-2 overflow-y-hidden"
+          >
+            {cards.map((card, i) => (
+              <div key={i} className="flex-shrink-0 w-[25rem]">
+                <GlassCard
+                  title={card.title}
+                  description={card.description}
+                  href={card.link}
+                  image={card.image}
+                  className="h-[25rem]"
+                />
+              </div>
+            ))}
           </motion.div>
-        ))}
+
+          {/* Setinha de navegação */}
+          <button
+            onClick={scrollRight}
+            className="z-20 bg-coral/30 hover:bg-coral text-white p-3 rounded-full transition w-10 h-10 flex items-center justify-center"
+            aria-label="Scroll right"
+          >
+            <FaChevronRight className="text-xl" />
+          </button>
+        </div>
       </div>
+
+      {/* Custom Scrollbar */}
+      <style>{`
+        #projects .overflow-x-auto::-webkit-scrollbar {
+          height: 6px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 0.5rem;
+        }
+        #projects .overflow-x-auto::-webkit-scrollbar-thumb {
+          background: rgba(255, 107, 107, 0.6);
+          border-radius: 0.5rem;
+        }
+      `}</style>
     </section>
   );
-}
+};
