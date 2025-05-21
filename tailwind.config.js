@@ -39,6 +39,9 @@ export default {
       backdropBlur: {
         xs: "2px",
       },
+      boxShadow: {
+      glass: '0 4px 20px rgba(255, 255, 255, 0.1)',
+    },
     },
   },
   plugins: [require("tailwind-scrollbar")],
