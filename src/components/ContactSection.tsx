@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function ContactSection() {
   const [showModal, setShowModal] = useState(false);

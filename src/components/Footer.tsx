@@ -1,6 +1,4 @@
 import { FaGithub, FaLinkedin, FaHeart, FaCoffee } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
-import { RiTwitterXLine } from "react-icons/ri";
 
 export default function Footer() {
   return (

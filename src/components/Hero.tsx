@@ -1,6 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiOutlineDocumentText } from "react-icons/hi";
-import { MdOutlineWorkOutline } from "react-icons/md";
 import { FiFileText } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { GlassCard } from "./GlassCard";
