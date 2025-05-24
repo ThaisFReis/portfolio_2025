@@ -2,24 +2,38 @@
 
 import { useRef } from "react";
 import {
-  animate,
   motion,
-  useMotionValue,
-  useMotionValueEvent,
   useScroll,
-  MotionValue,
 } from "framer-motion";
 import { GlassCard } from "./GlassCard";
-import projectImg from "@/assets/cria2.png";
+import criaImg from "@/assets/cria2.png";
+import sdaImg from "@/assets/sombras-de-aurora.png";
+import trackImg from "@/assets/trackIt.png";
 import { FaChevronRight } from "react-icons/fa";
 
-const cards = Array.from({ length: 4 }, (_, i) => ({
-  title: `PROJETO ${i + 1}`,
-  description:
-    "Painel interativo criado com React, Tailwind e animações suaves.",
-  link: "#",
-  image: projectImg,
-}));
+const cards = [
+  {
+    title: "Sombras de Aurora",
+    description:
+      "Este projeto é uma narrativa interativa onde o usuário pode acompanhar e interagir com diferentes postagens e destaques criados por personagens, com base no desenvolvimento de um enredo dinâmico. Os personagens principais e suas postagens são influenciados pelos atos da história, permitindo uma experiência imersiva e envolvente.",
+    link: "https://github.com/ThaisFReis/Sombras-de-Aurora",
+    image: sdaImg,
+  },
+  {
+    title: "CRI.A.",
+    description:
+      "Cria2 é uma plataforma de gerenciamento de projetos e tarefas, desenvolvida com o objetivo de facilitar a organização e o acompanhamento do progresso de atividades. Com uma interface intuitiva e recursos avançados, o Cria2 permite que os usuários criem, atribuam e monitorem tarefas de forma eficiente.",
+    link: "https://cri-a-alpha.vercel.app/",
+    image: criaImg,
+  },
+  {
+    title: "TrackerIt",
+    description:
+      "TrackerIt é uma aplicação web desenvolvida para ajudar os usuários a rastrear e gerenciar suas atividades diárias. Com uma interface intuitiva e recursos avançados, o TrackerIt permite que os usuários registrem suas atividades, definam metas e acompanhem seu progresso ao longo do tempo.",
+    link: "https://track-it-olive.vercel.app/",
+    image: trackImg,
+  },
+];
 
 export const ProjectsSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);

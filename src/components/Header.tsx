@@ -7,7 +7,7 @@ export default function Header() {
     "
     >
       <h1 className="text-xl font-bold text-white uppercase ml-0 mr-auto">
-        Thais
+        TFR
       </h1>
       <nav className="space-x-6 hidden md:flex">
         <a href="#about" className="hover:text-pinkAccent transition">
