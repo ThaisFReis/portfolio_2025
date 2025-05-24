@@ -6,10 +6,10 @@ type GlassCardBlockProps = {
   description: React.ReactNode;
   href?: string;
   image?: string;
-  className?: string,
-  classNameTitle?: string,
-  classNameDescription?: string,
-  hiddenFooter?: boolean,
+  className?: string;
+  classNameTitle?: string;
+  classNameDescription?: string;
+  hiddenFooter?: boolean;
 };
 
 export const GlassCard = ({
@@ -21,12 +21,12 @@ export const GlassCard = ({
   className,
   classNameTitle,
   classNameDescription,
-  hiddenFooter
+  hiddenFooter,
 }: GlassCardBlockProps) => {
   return (
     <motion.a
       href={href}
-      className={`relative group w-full max-w-sm rounded-2xl overflow-hidden border border-lavender/10 shadow-md hover:shadow-lavender/20 transition-all duration-300 !backdrop-blur-[3px] flex flex-col h-fit min-h-56 ${className}`}
+      className={`relative group-hover:text-coral group w-full max-w-sm rounded-2xl overflow-hidden border border-lavender/10 shadow-md hover:shadow-lavender/20 transition-all duration-300 !backdrop-blur-[3px] flex flex-col h-fit min-h-56 ${className}`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -47,15 +47,23 @@ export const GlassCard = ({
       )}
 
       {/* conteúdo principal */}
-      <div className="relative z-10 flex flex-col flex-grow p-6">
-        {icon && <div className="text-2xl mb-2 text-white">{icon}</div>}
-        <h3 className={`text-lg font-medium mb-1 uppercase ${classNameTitle}`}>{title}</h3>
-        <p className={`text-xs text-gray-300 ${classNameDescription}`}>{description}</p>
+      <div className="relative z-10 flex flex-col flex-grow p-6 gap-2">
+        {icon && (
+          <div className="text-2xl mb-2 !group-hover:text-coral">{icon}</div>
+        )}
+        <div className="flex flex-col gap-1">
+          <h3
+            className={`text-lg font-bold uppercase text-[#fff] font-heading ${classNameTitle}`}
+          >
+            {title}
+          </h3>
+          <p className={`text-xs ${classNameDescription}`}>{description}</p>
+        </div>
 
         <div className="flex-grow" />
 
         {!hiddenFooter && (
-          <span className="mt-4 text-sm font-medium text-white hover:text-coral transition">
+          <span className="mt-4 text-sm font-normal transition text-lavender group-hover:text-coral">
             Saiba mais →
           </span>
         )}

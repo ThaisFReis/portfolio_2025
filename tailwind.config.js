@@ -22,26 +22,24 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ["Poppins", "sans-serif"], // Fonte para títulos
-        body: ["Roboto", "sans-serif"], // Fonte para textos
-        quicksand: ["Quicksand", "sans-serif"], // Fonte Quicksand
-        josefin: ["Josefin Sans", "sans-serif"], // Fonte Josefin Sans
-        ubuntu: ["Ubuntu", "sans-serif"], // Fonte Ubuntu
-        sourceSans: ["Source Sans 3", "sans-serif"], // Fonte Source Sans 3
-        crimson: ["Crimson Text", "serif"], // Fonte Crimson Text
-        lora: ["Lora", "serif"], // Fonte Lora
-        imFell: ["IM Fell English", "serif"], // Fonte IM Fell English
-        bebas: ["Bebas Neue", "sans-serif"], // Fonte Bebas Neue
+        heading: ["Poppins", "sans-serif"],
+        body: ["Roboto", "sans-serif"],
+        quicksand: ["Quicksand", "sans-serif"],
+        josefin: ["Josefin Sans", "sans-serif"],
+        ubuntu: ["Ubuntu", "sans-serif"],
+        sourceSans: ["Source Sans 3", "sans-serif"],
+        crimson: ["Crimson Text", "serif"],
+        lora: ["Lora", "serif"],
+        imFell: ["IM Fell English", "serif"],
+        bebas: ["Bebas Neue", "sans-serif"],
         sans: ['"Inter"', "sans-serif"],
       },
-    },
-    extend: {
       backdropBlur: {
         xs: "2px",
       },
       boxShadow: {
-      glass: '0 4px 20px rgba(255, 255, 255, 0.1)',
-    },
+        glass: "0 4px 20px rgba(255, 255, 255, 0.1)",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")],

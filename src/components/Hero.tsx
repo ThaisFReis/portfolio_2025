@@ -17,7 +17,7 @@ export const Hero = () => {
             &lt;title&gt;
           </p>
 
-          <h1 className="text-4xl laptop:text-6xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]">
+          <h1 className="text-4xl laptop:text-6xl font-extrabold leading-tight tracking-wide uppercase text-[#fff]">
             OI, EU SOU
             <br />
             <span className="inline-block py-1 mt-3 rounded-md">THAIS</span>
@@ -36,7 +36,7 @@ export const Hero = () => {
             // Cientista de dados em formação
           </div>
 
-          <p className="mt-5 text-textPrimary text-sm max-w-lg leading-relaxed">
+          <p className="mt-5 text-textPrimary text-sm max-w-lg leading-relaxed ">
             Crio experiências digitais modernas, acessíveis e inclusivas. <br />
             Apaixonada por desenvolvimento web, dados e tecnologia de impacto.
           </p>
@@ -56,13 +56,13 @@ export const Hero = () => {
         <div className="flex flex-col gap-6">
           <div className="flex gap-4">
             <GlassCard
-              icon={<HiOutlineDocumentText className="text-3xl text-coral" />}
+              icon={<HiOutlineDocumentText className="text-3xl text-pinkAccent group-hover:text-coral" />}
               title="Sobre mim"
               description="Formação, carreira e perfil"
               href="#about"
             />
             <GlassCard
-              icon={<FiFileText className="text-3xl text-coral" />}
+              icon={<FiFileText className="text-3xl text-pinkAccent group-hover:text-coral" />}
               title="Projetos"
               description="Veja o que já construí"
               href="#projects"

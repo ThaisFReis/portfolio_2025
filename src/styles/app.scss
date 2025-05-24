@@ -7,8 +7,8 @@
 
   body {
     @apply overflow-x-hidden;
-    @apply bg-background text-textPrimary font-sans;
-    @apply bg-no-repeat bg-cover bg-center bg-fixed text-textPrimary font-sans;
+    @apply bg-background text-textPrimary;
+    @apply bg-no-repeat bg-cover bg-center bg-fixed text-textPrimary font-body;
   background-image: url('/src/assets/path.png');
   }
 

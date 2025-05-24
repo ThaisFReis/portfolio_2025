@@ -86,6 +86,7 @@ export const ProjectsSection = () => {
                   href={card.link}
                   image={card.image}
                   className="h-[25rem]"
+                  classNameTitle="group-hover:text-coral"
                 />
               </div>
             ))}

@@ -37,7 +37,7 @@ export default function ContactSection() {
           <input
             type="text"
             placeholder="Seu nome"
-            className="w-full bg-[#fff0] border border-lavender/10 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
+            className="w-full bg-[#fff0] border border-lavender/5 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
           />
         </div>
 
@@ -46,7 +46,7 @@ export default function ContactSection() {
           <input
             type="email"
             placeholder="seu@email.com"
-            className="w-full bg-[#fff0] border border-lavender/10 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
+            className="w-full bg-[#fff0] border border-lavender/5 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
             required
           />
         </div>
@@ -56,7 +56,7 @@ export default function ContactSection() {
           <textarea
             rows={5}
             placeholder="Escreva sua mensagem..."
-            className="w-full bg-[#fff0] border border-lavender/10 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
+            className="w-full bg-[#fff0] border border-lavender/5 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
             required
           />
         </div>

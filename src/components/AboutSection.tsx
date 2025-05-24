@@ -1,16 +1,68 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import {
+  PiGraduationCapLight,
+  PiSuitcaseLight,
+  PiCodeLight,
+  PiRocketLaunchLight,
+} from "react-icons/pi";
 import { GlassCard } from "./GlassCard";
-import { LiaLaptopCodeSolid } from "react-icons/lia";
-import { BsBriefcase, BsCodeSlash } from "react-icons/bs";
-import { PiGraduationCapLight } from "react-icons/pi";
 
-type stackType = {
+type TimelineItem = {
+  year: string;
   title: string;
-  description: string[];
+  place?: string;
+  description: string;
 };
 
-const stack: stackType[] = [
+const education: TimelineItem[] = [
+  {
+    year: "2019 - atualmente",
+    title: "Ciências Matemáticas e da Terra",
+    place: "Universidade Federal do Rio de Janeiro (UFRJ)",
+    description:
+      "Matérias relevantes: Cálculo, Segurança da Informação, Computação.",
+  },
+  {
+    year: "2022 - 2023",
+    title: "Desenvolvimento Web Full Stack",
+    place: "Driven Education",
+    description: `Projetos: +20 aplicações Full Stack (React, Node.js, SQL, ...).
+    • Metodologias ágeis (Scrum, sprints semanais).`,
+  },
+];
+
+const experience: TimelineItem[] = [
+  {
+    year: "2023 - atualmente",
+    title: "Iniciação Científica em ETL",
+    place: "CAPGov",
+    description: `Construção de pipelines de dados com SQL, Talend, Java e Python.
+    • Automação de processos de dados.
+    • Uso de Docker para padronizar ambientes.`,
+  },
+  {
+    year: "2023 - 2025",
+    title: "Estágio Front-End",
+    place: "Beplauze",
+    description: `Interfaces com React, TypeScript e Tailwind CSS.
+    • Otimização com Vite e Astro.
+    • Entregas semanais com metodologia ágil.`,
+  },
+];
+
+const extras: TimelineItem[] = [
+  {
+    year: "2023",
+    title: "Hackathon LiveMode - 2º lugar",
+    place: "CazéTV",
+    description: `Agente de IA para conteúdos esportivos.
+    • Front-End com Vite, React, Tailwind.
+    • Integrações com n8n e IA.`,
+  },
+];
+
+const skills = [
   {
     title: "Linguagens",
     description: ["JavaScript", "Python", "Java", "SQL", "TypeScript"],
@@ -53,200 +105,138 @@ const stack: stackType[] = [
   },
 ];
 
-const educationTimeline = [
-  {
-    year: "2021",
-    title: "Graduação em Ciência da Computação",
-    description: "Universidade Federal do Rio de Janeiro (UFRJ).",
-  },
-  {
-    year: "2023",
-    title: "Curso de Análise de Dados",
-    description: "Domínio de ETL, Python, Talend e automações com IA.",
-  },
-];
+const icons = {
+  skills: <PiCodeLight size={36} />,
+  education: <PiGraduationCapLight size={36} />,
+  experience: <PiSuitcaseLight size={36} />,
+  extras: <PiRocketLaunchLight size={36} />,
+};
 
-const experienceTimeline = [
-  {
-    year: "2022",
-    title: "Estágio como Desenvolvedora Front-End",
-    description: "Desenvolvimento de interfaces modernas com React e Tailwind.",
-  },
-  {
-    year: "2023",
-    title: "Projeto Destaque: CRI.A",
-    description: "Plataforma com foco em acessibilidade e impacto social.",
-  },
-  {
-    year: "2024",
-    title: "Hackathon & Projetos",
-    description: "Participação em hackathon e construção de MVPs com IA.",
-  },
-];
-
-type SectionKey = "education" | "experience" | "skills";
+type SectionKey = "skills" | "education" | "experience" | "extras";
 
 export default function AboutSection() {
-  const [selectedSection, setSelectedSection] =
-    useState<SectionKey>("education");
-
-  // Função para renderizar timeline (educação ou experiência)
-  function renderTimeline(timeline: typeof educationTimeline) {
-    return (
-      <section className="relative w-full px-4 pt-20 pb-10">
-        {/* Linha vertical central */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-coral/60 z-0" />
-
-        <div className="space-y-4 relative z-10">
-          {timeline.map((item, i) => {
-            const isLeft = i % 2 === 0;
-
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className={`flex flex-col w-full items-center laptop:items-${
-                  isLeft ? "start" : "end"
-                }`}
-              >
-                <div className="relative w-60">
-                  {/* Bolinha marcador */}
-                  <div
-                    className={`absolute top-4  ${
-                      isLeft ? "-left-6" : "-right-6"
-                    } w-4 h-4 bg-coral rounded-full border-2 border-white/10 z-10`}
-                  />
-
-                  {/* Caixa de conteúdo */}
-                  <div className="border border-lavender/10 shadow-md hover:shadow-lavender/20 !backdrop-blur-[3px] p-6 rounded-2xl">
-                    <h3 className="text-coral font-bold text-xs mb-1">
-                      {item.year}
-                    </h3>
-                    <h4 className="text-white font-semibold text-sm mb-1">
-                      {item.title}
-                    </h4>
-                    <p className="text-xs text-gray-300">{item.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-    );
-  }
-
-  // Render para skills (stack)
-  function renderSkills() {
-    return (
-      <div className="grid laptop:grid-cols-2 gap-6 max-w-4xl w-full px-4">
-        {stack.map((item, index) => (
-          <GlassCard
-            key={index}
-            title={item.title}
-            description={
-              <>
-                {item.description.map((desc, i) => (
-                  <span key={i}>
-                    {desc}
-                    {i < item.description.length - 1 && (
-                      <span className="text-coral"> • </span>
-                    )}
-                  </span>
-                ))}
-              </>
-            }
-            className="!shadow-none transition-none duration-0 !w-full !min-h-fit p-4"
-            hiddenFooter={true}
-          />
-        ))}
-      </div>
-    );
-  }
+  const [selected, setSelected] = useState<SectionKey>("skills");
+  const timelineMap = { education, experience, extras };
+  const timeline = timelineMap[selected as keyof typeof timelineMap];
 
   return (
     <section
       id="about"
-      className="py-32 px-6 bg-transparent text-white w-full flex flex-col items-center gap-12"
+      className="relative py-28 px-6 w-screen h-screen text-white bg-transparent overflow-hidden flex items-center justify-center"
     >
-      {/* Título e descrição */}
-      <div className="max-w-3xl text-center">
-        <motion.h2
-          className="text-4xl laptop:text-5xl font-bold font-bebas uppercase mb-6"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Sobre Mim
-        </motion.h2>
-        <p className="font-light ml-auto mr-0">
-          Olá! Eu sou a Thais. Eu sou uma{" "}
-          <span className="text-[#fff] italic font-normal">
-            desenvolvedora front-end e analista de dados
-          </span>
-          . <br /> Com mais de{" "}
-          <span className="text-[#fff] italic font-normal">2 anos</span> de
-          experiência
-        </p>
-      </div>
+      <div className="relative z-10 max-w-7xl grid laptop:grid-cols-3 gap-12 h-full justify-center items-center">
+        {/* Seletor lateral */}
+        <div className="space-y-6 text-center laptop:text-left">
+          <motion.h2
+            className="text-2xl laptop:text-4xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            SOBRE MIM
+          </motion.h2>
 
-      <div className="grid grid-cols-2 w-screen">
-        {/* Ícones para selecionar seção */}
-        <nav className="flex flex-row laptop:flex-col items-center gap-8 text-sm font-sourceSans">
-          {[
-            {
-              key: "education",
-              icon: (
-                <PiGraduationCapLight className="text-4xl laptop:text-5xl" />
-              ),
-              label: "Educação",
-            },
-            {
-              key: "experience",
-              icon: <BsBriefcase className="text-4xl laptop:text-5xl" />,
-              label: "Experiência",
-            },
-            {
-              key: "skills",
-              icon: <LiaLaptopCodeSolid className="text-4xl laptop:text-5xl" />,
-              label: "Skills",
-            },
-          ].map(({ key, icon, label }) => (
-            <button
-              key={key}
-              onClick={() => setSelectedSection(key)}
-              className={`flex items-center relative group transition-colors duration-300 ${
-                selectedSection === key ? "text-coral" : "text-white"
-              }`}
-            >
-              {icon}
+          <p className="text-sm leading-relaxed text-gray-300">
+            Olá! Eu sou a <span className="text-white font-medium">Thais</span>,
+            uma{" "}
+            <span className="italic text-white">desenvolvedora front-end</span>{" "}
+            e <span className="italic text-white">analista de dados</span>{" "}
+            apaixonada por criar experiências digitais modernas e funcionais.
+          </p>
 
-              {/* Texto com animação que aparece à direita do ícone */}
-              <span
-                className={`
-          absolute left-full ml-2 whitespace-nowrap font-semibold text-base transition-all duration-300
-          ${
-            selectedSection === key
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-2 pointer-events-none"
-          }
-        `}
+          <div className="flex flex-wrap justify-center laptop:justify-start gap-3">
+            {(
+              ["skills", "education", "experience", "extras"] as SectionKey[]
+            ).map((key) => (
+              <button
+                key={key}
+                onClick={() => setSelected(key)}
+                className={`p-3 rounded-full border-2 transition-all flex items-center justify-center ${
+                  selected === key
+                    ? "bg-pinkAccent/40 border-pinkAccent text-white"
+                    : "border-lavender/20 text-lavender hover:bg-lavender/10"
+                }`}
+                aria-label={key}
               >
-                {label}
-              </span>
-            </button>
-          ))}
-        </nav>
+                {icons[key]}
+              </button>
+            ))}
+          </div>
+        </div>
 
-        {/* Conteúdo da seção selecionada */}
-        <div className="w-full flex justify-center">
-          {selectedSection === "education" && renderTimeline(educationTimeline)}
-          {selectedSection === "experience" &&
-            renderTimeline(experienceTimeline)}
-          {selectedSection === "skills" && renderSkills()}
+        {/* Timeline ou Skills */}
+        <div className="col-span-2 relative w-[840px] flex items-center justify-start h-[450px] mx-auto ml-auto mr-0">
+          {selected !== "skills" ? (
+            <ol className="relative border-s border-pinkAccent/20 pl-6 laptop:pl-10 w-fit">
+              {timeline.map((item, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="mb-10 ms-4"
+                >
+                  {/* Bolinha do marcador */}
+                  <span className="absolute w-3 h-3 bg-coral/80 rounded-full mt-1.5 -start-1.5 border border-coral shadow shadow-coral/40 z-10" />
+
+                  {/* Ano */}
+                  <time className="mb-1 text-xs font-bold leading-none text-pinkAccent">
+                    {item.year}
+                  </time>
+
+                  {/* Título */}
+                  <h3 className="text-base font-semibold text-white">
+                    {item.title}
+                  </h3>
+
+                  {/* Local (opcional) */}
+                  {item.place && (
+                    <p className="text-sm italic text-pinkAccent mb-1">
+                      {item.place}
+                    </p>
+                  )}
+
+                  {/* Descrição */}
+                  {item.description.includes("•") ? (
+                    <ul className="text-sm text-gray-300 list-disc list-inside space-y-1">
+                      {item.description.split("•").map((line, idx) => (
+                        <li key={idx} className="marker:text-pinkAccent">
+                          {line.trim()}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-sm text-gray-300">{item.description}</p>
+                  )}
+                </motion.li>
+              ))}
+            </ol>
+          ) : (
+            <div className="grid laptop:grid-cols-2 gap-4 w-fit mx-auto">
+              {skills.map((item, index) => (
+                <GlassCard
+                  key={index}
+                  title={item.title}
+                  classNameTitle="text-lg -mt-2"
+                  description={
+                    <>
+                      {item.description.map((desc, i) => (
+                        <span key={i} className="text-sm">
+                          {desc}
+                          {i < item.description.length - 1 && (
+                            <span className="text-coral text-xs"> • </span>
+                          )}
+                        </span>
+                      ))}
+                    </>
+                  }
+                  className="!shadow-md p-4 backdrop-blur-sm bg-white/5 border border-white/10 !w-80 !h-36 !min-h-fit"
+                  hiddenFooter
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
