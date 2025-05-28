@@ -22,11 +22,18 @@ const cards = [
   {
     title: "CRI.A.",
     description:
-      "Cria2 é uma plataforma de gerenciamento de projetos e tarefas, desenvolvida com o objetivo de facilitar a organização e o acompanhamento do progresso de atividades. Com uma interface intuitiva e recursos avançados, o Cria2 permite que os usuários criem, atribuam e monitorem tarefas de forma eficiente.",
+      "Cria2 é uma plataforma de gerenciamento de projetos e tarefas, desenvolvida com o objetivo de facilitar a organização e o acompanhamento do progresso de atividades. Com uma interface intuitiva e recursos avançados, o Cria2 permite que os usuários criem, atribuam e monitorem tarefas de forma eficiente. Cria2 é uma plataforma de gerenciamento de projetos e tarefas, desenvolvida com o objetivo de facilitar a organização e o acompanhamento do progresso de atividades. Com uma interface intuitiva e recursos avançados, o Cria2 permite que os usuários criem, atribuam e monitorem tarefas de forma eficiente.",
     link: "https://cri-a-alpha.vercel.app/",
     image: criaImg,
   },
   {
+    title: "TrackerIt",
+    description:
+      "TrackerIt é uma aplicação web desenvolvida para ajudar os usuários a rastrear e gerenciar suas atividades diárias. Com uma interface intuitiva e recursos avançados, o TrackerIt permite que os usuários registrem suas atividades, definam metas e acompanhem seu progresso ao longo do tempo.",
+    link: "https://track-it-olive.vercel.app/",
+    image: trackImg,
+  },
+    {
     title: "TrackerIt",
     description:
       "TrackerIt é uma aplicação web desenvolvida para ajudar os usuários a rastrear e gerenciar suas atividades diárias. Com uma interface intuitiva e recursos avançados, o TrackerIt permite que os usuários registrem suas atividades, definam metas e acompanhem seu progresso ao longo do tempo.",
@@ -43,18 +50,22 @@ export const ProjectsSection = () => {
     scrollRef.current?.scrollBy({ left: 400, behavior: "smooth" });
   };
 
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" });
+  };
+
   return (
     <section
       id="projects"
-      className="relative px-6 pt-36 pb-20 min-h-screen flex flex-col items-center w-screen justify-evenly"
+      className="relative px-4 sm:px-6 pt-32 pb-20 min-h-screen flex flex-col items-center w-screen justify-evenly"
     >
-      <div className="flex flex-col items-center justify-between gap-10 h-fit">
-        <div className="flex h-fit w-full items-center justify-center gap-6">
-          <p className="text-4xl laptop:text-5xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]">
+      <div className="flex flex-col items-center gap-10 w-full">
+        {/* Título + círculo de progresso */}
+        <div className="flex items-center justify-center gap-4 sm:gap-6 w-full">
+          <p className="text-3xl sm:text-5xl font-extrabold tracking-wide font-bebas uppercase text-white">
             Projetos
           </p>
-          {/* Progress SVG */}
-          <svg className="w-14 h-14 -rotate-90 z-20" viewBox="0 0 100 100">
+          <svg className="w-10 h-10 sm:w-14 sm:h-14 -rotate-90 z-20" viewBox="0 0 100 100">
             <circle
               cx="50"
               cy="50"
@@ -75,41 +86,44 @@ export const ProjectsSection = () => {
           </svg>
         </div>
 
-        <div className="flex items-center gap-4">
-          {/* Setinha de navegação */}
+        {/* Carrossel + navegação */}
+        <div className="flex items-center gap-4 w-full justify-center relative">
+          {/* Botão anterior */}
           <button
-            onClick={() =>
-              scrollRef.current?.scrollBy({ left: -400, behavior: "smooth" })
-            }
-            className="z-20 bg-coral/30 hover:bg-coral text-white p-3 rounded-full transition w-10 h-10 flex items-center justify-center"
+            onClick={scrollLeft}
+            className="hidden sm:flex z-20 bg-coral/30 hover:bg-coral text-white p-3 rounded-full transition w-10 h-10 items-center justify-center"
             aria-label="Scroll left"
           >
             <FaChevronRight className="text-xl rotate-180" />
           </button>
 
-          {/* Carrossel Scrollable */}
+          {/* Carrossel */}
           <motion.div
             ref={scrollRef}
-            className="w-full max-w-7xl h-fit overflow-x-auto scroll-smooth flex gap-8 p-2 overflow-y-hidden"
+            className="w-full max-w-7xl overflow-x-auto scroll-smooth flex gap-6 laptop:gap-8 px-1 py-2 overflow-y-hidden"
           >
             {cards.map((card, i) => (
-              <div key={i} className="flex-shrink-0 w-[25rem]">
+              <div
+                key={i}
+                className="flex-shrink-0 w-[80vw] laptop:w-[22rem] transition-all duration-300"
+              >
                 <GlassCard
                   title={card.title}
                   description={card.description}
                   href={card.link}
                   image={card.image}
-                  className="h-[25rem]"
+                  className="group relative w-full h-full !max-h-[25rem]"
                   classNameTitle="group-hover:text-coral"
+                  classNameDescription="line-clamp-5"
                 />
               </div>
             ))}
           </motion.div>
 
-          {/* Setinha de navegação */}
+          {/* Botão próximo */}
           <button
             onClick={scrollRight}
-            className="z-20 bg-coral/30 hover:bg-coral text-white p-3 rounded-full transition w-10 h-10 flex items-center justify-center"
+            className="hidden sm:flex z-20 bg-coral/30 hover:bg-coral text-white p-3 rounded-full transition w-10 h-10 items-center justify-center"
             aria-label="Scroll right"
           >
             <FaChevronRight className="text-xl" />
@@ -117,7 +131,7 @@ export const ProjectsSection = () => {
         </div>
       </div>
 
-      {/* Custom Scrollbar */}
+      {/* Estilo do Scroll */}
       <style>{`
         #projects .overflow-x-auto::-webkit-scrollbar {
           height: 6px;

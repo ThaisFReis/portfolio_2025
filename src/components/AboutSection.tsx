@@ -27,7 +27,7 @@ const education: TimelineItem[] = [
     year: "2022 - 2023",
     title: "Desenvolvimento Web Full Stack",
     place: "Driven Education",
-    description: `Projetos: +20 aplicações Full Stack (React, Node.js, SQL, ...).
+    description: `Projetos: +20 aplicações Full Stack.
     • Metodologias ágeis (Scrum, sprints semanais).`,
   },
 ];
@@ -74,10 +74,8 @@ const skills = [
       "Astro",
       "Vite",
       "NextJs",
-      "Jest",
       "CSS",
       "Tailwind",
-      "SASS",
       "Material UI",
     ],
   },
@@ -86,10 +84,17 @@ const skills = [
     description: [
       "NodeJs",
       "Express",
-      "MongoDB",
-      "PostgreSQL",
       "NestJS",
       "Prisma",
+      "Jest",
+    ],
+  },
+  {
+    title: "Banco de Dados",
+    description: [
+      "PostgreSQL",
+      "MongoDB",
+      "SQL Server",
     ],
   },
   {
@@ -122,11 +127,11 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-28 px-6 w-screen h-screen text-white bg-transparent overflow-hidden flex items-center justify-center"
+      className="relative py-28 px-4 sm:px-6 w-screen min-h-screen text-white bg-transparent overflow-hidden flex items-center justify-center"
     >
-      <div className="relative z-10 max-w-7xl grid laptop:grid-cols-3 gap-12 h-full justify-center items-center">
+      <div className="relative z-10 w-full max-w-7xl grid laptop:grid-cols-3 max-tablet:flex-col gap-12 items-center justify-center">
         {/* Seletor lateral */}
-        <div className="space-y-6 text-center laptop:text-left">
+        <div className="space-y-6 text-center w-full max-laptop:mx-6">
           <motion.h2
             className="text-2xl laptop:text-4xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]"
             initial={{ opacity: 0, y: -20 }}
@@ -136,7 +141,7 @@ export default function AboutSection() {
             SOBRE MIM
           </motion.h2>
 
-          <p className="text-sm leading-relaxed text-gray-300">
+          <p className="text-sm leading-relaxed text-gray-300 laptop:text-justify max-laptop:w-11/12 mx-auto">
             Olá! Eu sou a <span className="text-white font-medium">Thais</span>,
             uma{" "}
             <span className="italic text-white">desenvolvedora front-end</span>{" "}
@@ -164,10 +169,10 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Timeline ou Skills */}
-        <div className="col-span-2 relative w-[840px] flex items-center justify-start h-[450px] mx-auto ml-auto mr-0">
+        {/* Conteúdo dinâmico */}
+        <div className="col-span-2 w-full max-w-full overflow-y-auto max-h-[70vh] pr-2 p-6">
           {selected !== "skills" ? (
-            <ol className="relative border-s border-pinkAccent/20 pl-6 laptop:pl-10 w-fit">
+            <ol className="relative border-s border-pinkAccent/20 pl-6 laptop:pl-10 z-20">
               {timeline.map((item, i) => (
                 <motion.li
                   key={i}
@@ -177,27 +182,18 @@ export default function AboutSection() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="mb-10 ms-4"
                 >
-                  {/* Bolinha do marcador */}
-                  <span className="absolute w-3 h-3 bg-coral/80 rounded-full mt-1.5 -start-1.5 border border-coral shadow shadow-coral/40 z-10" />
-
-                  {/* Ano */}
+                  <span className="absolute w-3 h-3 bg-coral/80 rounded-full mt-1.5 -start-1.5 border border-coral shadow shadow-coral/40 z-50" />
                   <time className="mb-1 text-xs font-bold leading-none text-pinkAccent">
                     {item.year}
                   </time>
-
-                  {/* Título */}
                   <h3 className="text-base font-semibold text-white">
                     {item.title}
                   </h3>
-
-                  {/* Local (opcional) */}
                   {item.place && (
                     <p className="text-sm italic text-pinkAccent mb-1">
                       {item.place}
                     </p>
                   )}
-
-                  {/* Descrição */}
                   {item.description.includes("•") ? (
                     <ul className="text-sm text-gray-300 list-disc list-inside space-y-1">
                       {item.description.split("•").map((line, idx) => (
@@ -213,7 +209,7 @@ export default function AboutSection() {
               ))}
             </ol>
           ) : (
-            <div className="grid laptop:grid-cols-2 gap-4 w-fit mx-auto">
+            <div className="flex-col max-laptop:space-y-4 laptop:grid laptop:grid-cols-2 gap-4 justify-center items-center mx-auto">
               {skills.map((item, index) => (
                 <GlassCard
                   key={index}
@@ -231,7 +227,7 @@ export default function AboutSection() {
                       ))}
                     </>
                   }
-                  className="!shadow-md p-4 backdrop-blur-sm bg-white/5 border border-white/10 !w-80 !h-36 !min-h-fit"
+                  className="!shadow-md p-4 backdrop-blur-sm bg-white/5 border border-white/10 !w-full !h-36 min-h-fit"
                   hiddenFooter
                 />
               ))}

@@ -20,6 +20,7 @@
     "axios": "^1.7.9",
     "caniuse-lite": "^1.0.30001701",
     "date-fns": "^4.1.0",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.12.1",
     "motion": "^12.12.1",
     "react": "^18.3.1",

@@ -20,10 +20,10 @@ export default function Header() {
           Contato
         </a>
       </nav>
-      <a href="/Thais-Ferreira-Reis-CV-Atualizado.pdf" download>
+      <a href="/Thais-Ferreira-Reis-CV_2025.pdf" download>
         <button className="bg-coral/30 text-[#fff] border border-coral/40 px-4 py-2 rounded-full font-medium hover:bg-coral transition ml-auto mr-0 flex items-center gap-2">
           <PiDownloadSimpleLight size={18} />
-          Download CV
+          Currículo
         </button>
       </a>
     </header>
