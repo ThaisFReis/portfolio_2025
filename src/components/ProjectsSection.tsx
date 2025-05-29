@@ -1,44 +1,53 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-} from "framer-motion";
+import { motion, useScroll } from "framer-motion";
 import { GlassCard } from "./GlassCard";
 import criaImg from "@/assets/cria2.png";
 import sdaImg from "@/assets/sombras-de-aurora.png";
 import trackImg from "@/assets/trackIt.png";
 import { FaChevronRight } from "react-icons/fa";
+import { Lightbulb } from "lucide-react";
 
-const cards = [
+type CardsProps = {
+  title: string;
+  description: string;
+  link?: string;
+  image?: string;
+  isReal: boolean;
+};
+
+const cards: CardsProps[] = [
   {
     title: "Sombras de Aurora",
     description:
-      "Este projeto é uma narrativa interativa onde o usuário pode acompanhar e interagir com diferentes postagens e destaques criados por personagens, com base no desenvolvimento de um enredo dinâmico. Os personagens principais e suas postagens são influenciados pelos atos da história, permitindo uma experiência imersiva e envolvente.",
+      "Jogo em desenvolvimento que combina rede social simulada e enredo dinâmico, onde suas escolhas moldam a história.",
     link: "https://github.com/ThaisFReis/Sombras-de-Aurora",
     image: sdaImg,
+    isReal: true,
   },
   {
     title: "CRI.A.",
     description:
-      "Cria2 é uma plataforma de gerenciamento de projetos e tarefas, desenvolvida com o objetivo de facilitar a organização e o acompanhamento do progresso de atividades. Com uma interface intuitiva e recursos avançados, o Cria2 permite que os usuários criem, atribuam e monitorem tarefas de forma eficiente. Cria2 é uma plataforma de gerenciamento de projetos e tarefas, desenvolvida com o objetivo de facilitar a organização e o acompanhamento do progresso de atividades. Com uma interface intuitiva e recursos avançados, o Cria2 permite que os usuários criem, atribuam e monitorem tarefas de forma eficiente.",
+      "Aplicação desenvolvida no Hackathon Livemode para organizar tarefas e acompanhar projetos de forma intuitiva e eficiente.",
     link: "https://cri-a-alpha.vercel.app/",
     image: criaImg,
+    isReal: true,
   },
   {
     title: "TrackerIt",
     description:
-      "TrackerIt é uma aplicação web desenvolvida para ajudar os usuários a rastrear e gerenciar suas atividades diárias. Com uma interface intuitiva e recursos avançados, o TrackerIt permite que os usuários registrem suas atividades, definam metas e acompanhem seu progresso ao longo do tempo.",
+      "Aplicação web criada no Bootcamp Drive para ajudar no rastreamento de tarefas, metas e progresso diário de forma prática e intuitiva.",
     link: "https://track-it-olive.vercel.app/",
     image: trackImg,
+    isReal: true,
   },
-    {
-    title: "TrackerIt",
+  {
+    title: "Novos Projetos a Caminho",
     description:
-      "TrackerIt é uma aplicação web desenvolvida para ajudar os usuários a rastrear e gerenciar suas atividades diárias. Com uma interface intuitiva e recursos avançados, o TrackerIt permite que os usuários registrem suas atividades, definam metas e acompanhem seu progresso ao longo do tempo.",
-    link: "https://track-it-olive.vercel.app/",
-    image: trackImg,
+      "Novas ideias estão fervendo e grandes inovações estão sendo preparadas! Em breve, você poderá explorar projetos inéditos, cheios de criatividade e tecnologia de ponta. Prepare-se para se surpreender!",
+    link: "",
+    isReal: false,
   },
 ];
 
@@ -65,7 +74,10 @@ export const ProjectsSection = () => {
           <p className="text-3xl sm:text-5xl font-extrabold tracking-wide font-bebas uppercase text-white">
             Projetos
           </p>
-          <svg className="w-10 h-10 sm:w-14 sm:h-14 -rotate-90 z-20" viewBox="0 0 100 100">
+          <svg
+            className="w-10 h-10 sm:w-14 sm:h-14 -rotate-90 z-20"
+            viewBox="0 0 100 100"
+          >
             <circle
               cx="50"
               cy="50"
@@ -107,15 +119,36 @@ export const ProjectsSection = () => {
                 key={i}
                 className="flex-shrink-0 w-[80vw] laptop:w-[22rem] transition-all duration-300"
               >
-                <GlassCard
-                  title={card.title}
-                  description={card.description}
-                  href={card.link}
-                  image={card.image}
-                  className="group relative w-full h-full !max-h-[25rem]"
-                  classNameTitle="group-hover:text-coral"
-                  classNameDescription="line-clamp-5"
-                />
+                {card.isReal ? (
+                  <GlassCard
+                    title={card.title}
+                    description={card.description}
+                    href={card.link}
+                    image={card.image}
+                    className="group relative w-full h-full !max-h-[25rem]"
+                    classNameTitle="group-hover:text-coral"
+                    classNameDescription="line-clamp-5"
+                  />
+                ) : (
+                  <motion.div
+                    className=" group bg-gradient-to-br from-purple-700 via-pink-600 to-red-500 p-6 flex flex-col items-center text-white group-hover:scale-105 cursor-default select-none w-full max-w-sm rounded-2xl h-full !max-h-[25rem]  border border-lavender/10 shadow-md hover:shadow-lavender/20 transition-all duration-300 !backdrop-blur-[3px]"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <Lightbulb className="w-20 h-20 mb-4 rounded-full bg-white/25 flex items-center justify-center text-pinkAccent text-5xl group-hover:text-coral" />
+
+                    <h3 className="text-2xl font-extrabold mb-2 text-center tracking-wide text-[#fff]">
+                      {card.title}
+                    </h3>
+                    <p className="text-center text-sm leading-relaxed px-2">
+                      {card.description}
+                    </p>
+                    <span className="mt-5 inline-block px-5 py-1 rounded-full bg-white/30 text-sm font-semibold uppercase tracking-wide group-hover:text-coral">
+                      Em breve!
+                    </span>
+                  </motion.div>
+                )}
               </div>
             ))}
           </motion.div>
