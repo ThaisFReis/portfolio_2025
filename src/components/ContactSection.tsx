@@ -58,7 +58,7 @@ export default function ContactSection() {
       >
         <div className="flex items-center justify-evenly gap-5">
           <a
-            href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWsmFSjJZgkFKcMxRRNMWDZbhgKrPfQQDGgSFsVNNLkKsGqlHmMCcQSdkssmGQmPTxgNfsJcBm"
+            href="mailto:reis.thaisf@gmail.com"
             target="_blank"
             className="py-3 px-8 rounded-full border-2 gap-2 transition-all flex items-center justify-center border-lavender/20 text-lavender hover:bg-lavender/10"
           >
