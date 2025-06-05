@@ -5,7 +5,6 @@ import { motion, useScroll } from "framer-motion";
 import { GlassCard } from "./GlassCard";
 import criaImg from "@/assets/cria2.png";
 import sdaImg from "@/assets/sombras-de-aurora.png";
-import trackImg from "@/assets/trackIt.png";
 import { FaChevronRight } from "react-icons/fa";
 import { Lightbulb } from "lucide-react";
 
