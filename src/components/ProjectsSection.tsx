@@ -35,14 +35,6 @@ const cards: CardsProps[] = [
     isReal: true,
   },
   {
-    title: "TrackerIt",
-    description:
-      "Aplicação web criada no Bootcamp Drive para ajudar no rastreamento de tarefas, metas e progresso diário de forma prática e intuitiva.",
-    link: "https://track-it-olive.vercel.app/",
-    image: trackImg,
-    isReal: true,
-  },
-  {
     title: "Novos Projetos a Caminho",
     description:
       "Novas ideias estão fervendo e grandes inovações estão sendo preparadas! Em breve, você poderá explorar projetos inéditos, cheios de criatividade e tecnologia de ponta. Prepare-se para se surpreender!",
