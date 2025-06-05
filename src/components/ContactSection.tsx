@@ -1,46 +1,45 @@
-import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import emailjs from "emailjs-com";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { FaWhatsapp, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
-export default function ContactSection() {
-  const [showModal, setShowModal] = useState(false);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
+function WhatsAppBox() {
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formRef.current) return;
-
-    setLoading(true); // ativa animação
-
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setError(false);
-          formRef.current?.reset();
-        },
-        () => {
-          setError(true);
-        }
-      )
-      .finally(() => {
-        setLoading(false);
-        setShowModal(true);
-        setTimeout(() => setShowModal(false), 3000);
-      });
+  const handleSend = () => {
+    const text = encodeURIComponent(message);
+    const phoneNumber = "5521985712371";
+    window.open(`https://wa.me/${phoneNumber}?text=${text}`, "_blank");
   };
 
   return (
+    <div className="w-full max-w-lg px-4 sm:px-6 md:px-8">
+      <div className="bg-gradient-to-br from-purple-700 via-pink-600 to-red-500 p-6 rounded-2xl border border-lavender/10 shadow-md hover:shadow-lavender/20 transition-all duration-300 backdrop-blur-[3px] flex flex-col gap-5 items-center text-white">
+        <textarea
+          rows={5}
+          className="w-full bg-background/50 text-white text-sm p-4 rounded-xl resize-none focus:outline-none focus:ring-1 focus:ring-lavender/50 transition-all"
+          placeholder="Digite aqui e envie via WhatsApp..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+
+        <button
+          onClick={handleSend}
+          disabled={!message.trim()}
+          className="w-full sm:w-auto flex items-center justify-center gap-2 py-3 px-8 rounded-full border-2 border-lavender/20 text-lavender hover:bg-lavender/10 transition-all disabled:opacity-40"
+        >
+          <FaWhatsapp className="text-xl" />
+          Enviar via WhatsApp
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function ContactSection() {
+  return (
     <section
       id="contact"
-      className="min-h-screen flex flex-col items-center justify-center text-white gap-6 px-4"
+      className="min-h-screen flex flex-col items-center justify-center text-white gap-8 px-4"
     >
       <motion.h2
         className="text-xl sm:text-2xl lg:text-4xl font-extrabold leading-tight tracking-wide font-bebas uppercase text-[#fff]"
@@ -48,84 +47,38 @@ export default function ContactSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Me Contate:
+        Me Contate
       </motion.h2>
 
-      <motion.form
-        onSubmit={handleSubmit}
-        ref={formRef}
-        className="flex flex-col justify-center group w-full max-w-md sm:max-w-lg lg:max-w-2xl rounded-2xl p-6 border border-lavender/5 shadow-md transition-all duration-300 backdrop-blur-[3px] gap-4"
+      <motion.div
+        className="flex flex-col sm:flex-row gap-6 text-lg w-2/5 items-center"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div>
-          <label className="block text-sm mb-1 text-gray-300">Nome</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Escreva seu nome"
-            className="w-full bg-[#fff0] border border-lavender/5 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm mb-1 text-gray-300">Email</label>
-          <input
-            type="email"
-            name="e-mail"
-            placeholder="Escreva seu email"
-            className="w-full bg-[#fff0] border border-lavender/5 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm mb-1 text-gray-300">Mensagem</label>
-          <textarea
-            rows={5}
-            name="message"
-            placeholder="Escreva sua mensagem..."
-            className="w-full bg-[#fff0] border border-lavender/5 text-[#fff] font-medium p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-coral"
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className={`flex items-center justify-center gap-2 bg-coral/30 text-[#fff] border border-coral/40 px-6 py-2 rounded-full font-medium transition mx-auto my-4 ${
-            loading ? "opacity-60 cursor-not-allowed" : "hover:bg-coral"
-          }`}
-        >
-          {loading && (
-            <motion.span
-              className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            />
-          )}
-          {loading ? "Enviando..." : "Enviar mensagem"}
-        </button>
-      </motion.form>
-
-      <AnimatePresence>
-        {showModal && (
-          <motion.div
-            className={`fixed bottom-10 px-6 py-3 rounded-xl shadow-lg backdrop-blur-md z-50 ${
-              error ? "bg-red-500" : "bg-coral"
-            }`}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
+        <div className="flex items-center justify-evenly gap-5">
+          <a
+            href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWsmFSjJZgkFKcMxRRNMWDZbhgKrPfQQDGgSFsVNNLkKsGqlHmMCcQSdkssmGQmPTxgNfsJcBm"
+            target="_blank"
+            className="py-3 px-8 rounded-full border-2 gap-2 transition-all flex items-center justify-center border-lavender/20 text-lavender hover:bg-lavender/10"
           >
-            {error
-              ? "❌ Ocorreu um erro ao enviar sua mensagem."
-              : "✨ Sua mensagem foi enviada com sucesso!"}
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <FaEnvelope className="text-xl" />
+            E-mail
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/thaisfreis"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-3 px-8 rounded-full border-2 gap-2 transition-all flex items-center justify-center border-lavender/20 text-lavender hover:bg-lavender/10"
+          >
+            <FaLinkedin className="text-xl" />
+            LinkedIn
+          </a>
+        </div>
+
+        <WhatsAppBox />
+      </motion.div>
     </section>
   );
 }
